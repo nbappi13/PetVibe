@@ -1,20 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment 06</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet Adoption</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
-
-
-
-
-
-
-
-
+    <header>
+        <nav class="w-11/12 mx-auto py-3 flex justify-between items-center border-b">
+            <div class="flex items-center gap-2">
+                <div class="logo w-[40px]">
+                    <img src="assets/logo.webp" alt="Pet's finger" />
+                </div>
+                <span class="text-xl font-bold"><a href="#">Peddy</a></span>
+            </div>
+            <div class="hidden md:flex nav-links gap-5">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Shop</a>
+                <a href="#" class="nav-link">Contact</a>
+            </div>
+            <div class="user-icon hidden md:flex items-center">
+                <img src="https://img.icons8.com/?size=100&id=118239&format=png&color=000000" class="rounded-full h-8 w-8" alt="User Icon"/>
+            </div>
+            <!-- Mobile Menu Button -->
+            <div class="flex md:hidden items-center">
+                <img src="https://img.icons8.com/?size=100&id=118239&format=png&color=000000" class="rounded-full h-8 w-8 mr-2" alt="User Icon"/>
+                <button class="btn btn-ghost" onclick="toggleMenu()">☰</button>
+            </div>
+        </nav>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden flex flex-col items-center bg-white w-full">
+            <a href="#" class="nav-link my-2">Home</a>
+            <a href="#" class="nav-link my-2">Shop</a>
+            <a href="#" class="nav-link my-2">Contact</a>
+        </div>
+    </header>
     <script src="pet.js"></script>
 </body>
 </html>
