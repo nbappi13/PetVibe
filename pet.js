@@ -9,5 +9,11 @@ function toggleMenu() {
     }
 }
 
+function scrollToAdoptSection() {
+    const section = document.getElementById('adopt-section');
+    section.scrollIntoView({ behavior: 'smooth' });
+}
+
+
 
 

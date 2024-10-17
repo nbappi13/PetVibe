@@ -1,4 +1,16 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+body {
+    font-family: "Lato", sans-serif;
+} 
+
+
+
+
+
+
 
 .nav-link {
     text-decoration: none;
@@ -7,6 +19,19 @@
 }
 
 .nav-link:hover {
-    color: #ff6347; /* or any color you prefer */
+    color: #ff6347;
 }
 
+.banner {
+    background-color: #f5f5f5; /* Light gray background for the banner section */
+}
+
+.btn-primary {
+    background-color: #1abc9c;
+    color: white;
+    border: none
+}
+
+.btn-primary:hover {
+    background-color: #89a016;
+}
