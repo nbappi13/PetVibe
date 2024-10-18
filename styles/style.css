@@ -30,8 +30,6 @@ body {
 
 .category-btn {
     margin: 0 8px;
-    
-    
 }
 
 .category-btn img {
@@ -51,7 +49,6 @@ body {
     #categories {
         gap: 12px;
     }
-    
 }
 
 @media (max-width: 768px) {
@@ -65,14 +62,29 @@ body {
         gap: 8px;
     }
 }
+
 @media (min-width: 1024px) {
     .category-btn {
-        padding-left: 90px;
-        padding-right: 90px;
+        padding-left: 95px;
+        padding-right: 95px;
         font-size: larger;
         font-weight: bold;
     }
-    
 }
 
+/* Flexbox for best deal text and sort button */
+.adopt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.adopt-subtitle {
+    display: inline-block;
+    text-align: left;
+}
+
+.sort-button {
+    text-align: right;
+    
+}
