@@ -49,6 +49,32 @@ function displayCategories(categories) {
     });
 }
 
+// -------------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+    // Show spinner
+    const spinner = document.getElementById('loadBar');
+    spinner.classList.remove('hidden');
+
+    // Hide spinner after 2 seconds
+    setTimeout(() => {
+        spinner.classList.add('hidden');
+    }, 2000);
+
+    loadCategories();
+    loadAllPets(); // Load all pets by default
+});
+
+
+
+
+
+
+// ---------------------------------------------------------------------
+
+
+
+
+
 async function loadAllPets() {
     try {
         const res = await fetch('https://openapi.programming-hero.com/api/peddy/pets');
