@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body>
     <!-- Navbar -->
@@ -58,14 +59,15 @@
             <button class="btn btn-outline bg-teal-500 text-white text-base md:mr-16 mr-4" onclick="sortPetsByPrice()">Sort By Price</button>
         </div>
         <div class="flex">
-            <div id="pets" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-3/4"></div>
+            <div id="pets" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-3/4 ml-10"></div>
             <div id="liked-pets" class="grid grid-cols-2 gap-4 w-1/4"></div>
         </div>
+        
+        
+        
+        
     </section>
-    
-    
-    
-    
+    <div id="modal" class="hidden"></div>
     <script src="pet.js"></script>
 </body>
 </html>
