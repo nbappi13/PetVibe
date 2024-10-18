@@ -86,5 +86,83 @@ body {
 
 .sort-button {
     text-align: right;
-    
+}
+
+/* Styling for pet cards */
+.card {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background: white;
+}
+
+.card-body {
+    padding: 16px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.card p {
+    margin: 4px 0;
+}
+
+/* Liked pets section */
+#liked-pets img {
+    border: 2px solid #1abc9c;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+/* Button styles */
+.btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.btn-warning {
+    background-color: #ff9800;
+    color: white;
+}
+
+.btn-info {
+    background-color: #03a9f4;
+    color: white;
+}
+
+.btn-sm {
+    padding: 4px 8px;
+    font-size: 0.875rem;
+}
+
+/* Responsiveness for pet cards */
+#pets {
+    display: grid;
+    gap: 16px;
+}
+
+@media (min-width: 640px) {
+    #pets {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    #pets {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    #pets {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
