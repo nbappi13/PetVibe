@@ -84,9 +84,10 @@ async function filterPets(category) {
 function displayNoInfo() {
     const petsContainer = document.getElementById('pets');
     petsContainer.innerHTML = `
-        <div class="no-info">
-            <img src="path/to/no-info-image.jpg" alt="No Information Available" class="w-full h-auto">
-            <p>No Information Available</p>
+        <div class="no-info ">
+            <img src="assets/error.webp" alt="image about no data" class="w-full h-auto md:ml-80">
+            <p class="md:font-extrabold text-lg font-bold md:text-3xl">No Information Is Available</p>
+            <p class="md:mb-7">Since the API doesn't currently provide data for birds, we're unable to display any information about them. We apologize for any inconvenience this may cause.</p>
         </div>
     `;
 }
@@ -147,25 +148,39 @@ function likePet(thumbnail) {
 
 function adoptPet(button, petName) {
     const modalContent = `
-        <h2 class="text-xl font-bold">Congratulation! Adopting process starts for your pet</h2>
-        <p>Adopting ${petName}</p>
-        <p id="countdown">3</p>
-        <button class="btn btn-sm" onclick="closeModal()">Close</button>
+        <div>
+            <h2 class="text-2xl font-extrabold text-green-600 text-center">Congratulation! <br> Adopting process starts for your pet . . .</h2>
+            <img src="https://img.icons8.com/?size=100&id=Kd3aGkmdbe4V&format=png&color=000000" alt="Adoption Icon" style="margin: 20px 0;">
+            <p id="adopting-text" class="text-red-700 mt-5 text-center">Adopting ${petName}</p>
+            <p id="countdown" class="text-center" style="font-size: 1.2rem;">3</p>
+            <button class="btn btn-sm btn-danger" onclick="closeModal()" style="background-color: #ff6347; color: white; margin-top: auto;">Close</button>
+        </div>
     `;
     const modal = document.getElementById('modal');
     modal.innerHTML = modalContent;
     modal.classList.remove('hidden');
     let countdown = 3;
     const interval = setInterval(() => {
-        document.getElementById('countdown').textContent = countdown;
+        const countdownElement = document.getElementById('countdown');
+        countdownElement.textContent = countdown;
+        countdownElement.style.fontSize = '1.2rem'; 
         countdown--;
         if (countdown < 0) {
             clearInterval(interval);
-            document.getElementById('countdown').textContent = 'Adopted!';
+            countdownElement.textContent = `Now You Adopted ${petName}!`;
+            countdownElement.style.color = 'orange';
+            countdownElement.style.fontWeight = 'bold';
+            document.getElementById('adopting-text').style.display = 'none'; 
             button.disabled = true;
         }
     }, 1000);
 }
+
+
+
+
+
+
 
 function showPetDetails(petId) {
     fetch(`https://openapi.programming-hero.com/api/peddy/pet/${petId}`)

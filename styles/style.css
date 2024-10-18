@@ -38,6 +38,10 @@ body {
     height: 24px;
 }
 
+
+
+
+
 /* Responsive adjustments */
 #categories {
     display: flex;
@@ -87,6 +91,75 @@ body {
 .sort-button {
     text-align: right;
 }
+
+/* General styles for the modal */
+/* General styles for the modal */
+/* General styles for the modal */
+#modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+#modal > div {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 80vw;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow-y: auto;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    #modal > div {
+        padding: 10px;
+        height: auto;
+    }
+    #modal h2 {
+        font-size: 1.2rem;
+    }
+    #modal img {
+        margin: 10px 0;
+        width: 60px;
+        height: auto;
+    }
+    #modal p {
+        font-size: 0.9rem;
+    }
+    #modal button {
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1200px) {
+    #modal > div {
+        padding: 20px;
+        max-width: 70vw;
+        height: auto;
+    }
+    #modal h2 {
+        font-size: 1.8rem;
+    }
+    #modal img {
+        margin: 20px 0;
+        width: 80px;
+        height: auto;
+    }
+    #modal p {
+        font-size: 1rem;
+    }
+}
+
+
+
 
 /* Styling for pet cards */
 /* Default Card Styling */
