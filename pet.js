@@ -1,6 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    const spinner = document.getElementById('loadBar');
+    spinner.classList.remove('hidden');
+
+
+    setTimeout(() => {
+        spinner.classList.add('hidden');
+    }, 2000);
+
     loadCategories();
-    loadAllPets(); // Load all pets by default
+    loadAllPets(); 
 });
 
 function toggleMenu() {
@@ -41,6 +50,7 @@ function displayCategories(categories) {
             const button = document.createElement('button');
             button.classList = 'btn btn-outline category-btn';
             button.innerHTML = `<img src="${category.category_icon}" alt="${category.category}" class="w-6 h-6 mr-2">${category.category}`;
+            button.addEventListener('click', () => filterPets(categoryName.toLowerCase()));
             categoriesContainer.appendChild(button);
             console.log('Button added for category:', category.category);
         } else {
@@ -49,31 +59,37 @@ function displayCategories(categories) {
     });
 }
 
-// -------------------------------------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
-    // Show spinner
-    const spinner = document.getElementById('loadBar');
-    spinner.classList.remove('hidden');
+async function filterPets(category) {
+    if (category === "bird") {
+        displayNoInfo();
+        return;
+    }
+    try {
+        const res = await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`);
+        if (!res.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await res.json();
+        if (data && data.data) { 
+            displayPets(data.data);
+        } else {
+            displayNoInfo();
+        }
+    } catch (error) {
+        console.error('Error fetching pets by category:', error);
+        displayNoInfo();
+    }
+}
 
-    // Hide spinner after 2 seconds
-    setTimeout(() => {
-        spinner.classList.add('hidden');
-    }, 2000);
-
-    loadCategories();
-    loadAllPets(); // Load all pets by default
-});
-
-
-
-
-
-
-// ---------------------------------------------------------------------
-
-
-
-
+function displayNoInfo() {
+    const petsContainer = document.getElementById('pets');
+    petsContainer.innerHTML = `
+        <div class="no-info">
+            <img src="path/to/no-info-image.jpg" alt="No Information Available" class="w-full h-auto">
+            <p>No Information Available</p>
+        </div>
+    `;
+}
 
 async function loadAllPets() {
     try {
@@ -82,8 +98,8 @@ async function loadAllPets() {
             throw new Error('Network response was not ok');
         }
         const data = await res.json();
-        console.log('Fetched Pets:', data.pets); // Log to inspect the data structure
-        if (data && data.pets) {
+        console.log('Fetched Pets:', data.pets);
+        if (data && data.pets) { 
             displayPets(data.pets);
         } else {
             console.error('No pets found in the response:', data);
@@ -97,7 +113,7 @@ function displayPets(pets) {
     const petsContainer = document.getElementById('pets');
     petsContainer.innerHTML = '';
     pets.forEach(pet => {
-        console.log('Pet Data:', pet); // Debugging line to log pet data
+        console.log('Pet Data:', pet); 
         const petCard = document.createElement('div');
         petCard.classList = 'card card-compact p-4';
         petCard.innerHTML = `
@@ -112,7 +128,7 @@ function displayPets(pets) {
                 <p><i class="fas fa-dollar-sign"></i> Price: ${pet.price ? `$${pet.price}` : 'No Price'}</p>
                 <div class="flex gap-2 mt-4">
                     <button class="btn btn-sm" onclick="likePet('${pet.image || 'assets/placeholder.png'}')">Like</button>
-                    <button class="btn btn-sm btn-warning" onclick="adoptPet(this)">Adopt</button>
+                    <button class="btn btn-sm btn-warning" onclick="adoptPet(this, '${pet.pet_name || 'No Name'}')">Adopt</button>
                     <button class="btn btn-sm btn-info" onclick="showPetDetails('${pet.id}')">Details</button>
                 </div>
             </div>
@@ -121,31 +137,31 @@ function displayPets(pets) {
     });
 }
 
-
 function likePet(thumbnail) {
     const likedPetsContainer = document.getElementById('liked-pets');
     const petThumbnail = document.createElement('img');
     petThumbnail.src = thumbnail;
     petThumbnail.classList = 'rounded h-16 w-16 object-cover';
-
-    // Ensure image is appended at the bottom each time
     likedPetsContainer.appendChild(petThumbnail);
 }
 
-
-
-
-
-
-
-function adoptPet(button) {
+function adoptPet(button, petName) {
+    const modalContent = `
+        <h2 class="text-xl font-bold">Congratulation! Adopting process starts for your pet</h2>
+        <p>Adopting ${petName}</p>
+        <p id="countdown">3</p>
+        <button class="btn btn-sm" onclick="closeModal()">Close</button>
+    `;
+    const modal = document.getElementById('modal');
+    modal.innerHTML = modalContent;
+    modal.classList.remove('hidden');
     let countdown = 3;
     const interval = setInterval(() => {
-        button.textContent = `Adopting in ${countdown}...`;
+        document.getElementById('countdown').textContent = countdown;
         countdown--;
         if (countdown < 0) {
             clearInterval(interval);
-            button.textContent = 'Adopted';
+            document.getElementById('countdown').textContent = 'Adopted!';
             button.disabled = true;
         }
     }, 1000);
@@ -157,12 +173,13 @@ function showPetDetails(petId) {
         .then(data => {
             const pet = data.data;
             const modalContent = `
+                <img src="${pet.image || 'assets/placeholder.png'}" alt="${pet.pet_name || 'No Name'}" class="h-48 w-full object-cover rounded">
                 <h2 class="text-xl font-bold">${pet.pet_name || 'No Name'}</h2>
                 <p><i class="fas fa-paw"></i> Breed: ${pet.breed || 'Unknown Breed'}</p>
                 <p><i class="fas fa-calendar-alt"></i> Birth: ${pet.date_of_birth || 'Not Available'}</p>
                 <p><i class="fas fa-venus-mars"></i> Gender: ${pet.gender || 'Unknown Gender'}</p>
                 <p><i class="fas fa-dollar-sign"></i> Price: ${pet.price ? `$${pet.price}` : 'No Price'}</p>
-                <p>${pet.vaccination_history || 'Vaccination History Not Available'}</p>
+                <p><i class="fas fa-syringe"></i> Vaccinated: ${pet.vaccination_history ? 'Yes' : 'No'}</p>
                 <p>${pet.description || 'Description Not Available'}</p>
                 <button class="btn btn-sm" onclick="closeModal()">Close</button>
             `;
@@ -174,7 +191,6 @@ function showPetDetails(petId) {
             console.error('Error fetching pet details:', error);
         });
 }
-
 
 function closeModal() {
     const modal = document.getElementById('modal');
