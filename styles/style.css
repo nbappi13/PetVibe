@@ -38,6 +38,14 @@ body {
     height: 24px;
 }
 
+/* Add styles for active category button */
+.category-btn.active {
+    background-color: #1abc9c;
+    color: white;
+    border-color: #1abc9c;
+}
+
+
 
 
 
