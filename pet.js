@@ -144,16 +144,14 @@ async function filterPets(category) {
 
 async function sortPetsByPrice() {
     if (currentCategory === "bird") {
-        return; 
+        return;
     }
-    
     const petsContainer = document.getElementById('pets');
     const spinner = document.getElementById('loadBar');
     spinner.classList.remove('hidden');
     setTimeout(() => {
         spinner.classList.add('hidden');
     }, 2000);
-
     try {
         let pets;
         if (currentCategory) {
@@ -171,31 +169,8 @@ async function sortPetsByPrice() {
             const data = await res.json();
             pets = data.pets;
         }
-
-        const sortedPets = pets.sort((a, b) => b.price - a.price); 
-        petsContainer.innerHTML = '';
-        sortedPets.forEach(pet => {
-            const petCard = document.createElement('div');
-            petCard.classList = 'card card-compact p-4';
-            petCard.innerHTML = `
-                <figure>
-                    <img src="${pet.image || 'assets/placeholder.png'}" alt="${pet.pet_name || 'No Name'}" class="h-48 w-full object-cover rounded">
-                </figure>
-                <div class="card-body">
-                    <h2 class="card-title">${pet.pet_name || 'No Name'}</h2>
-                    <p><i class="fas fa-paw"></i> Breed: ${pet.breed || 'Unknown Breed'}</p>
-                    <p><i class="fas fa-calendar-alt"></i> Birth: ${pet.date_of_birth || 'Not Available'}</p>
-                    <p><i class="fas fa-venus-mars"></i> Gender: ${pet.gender || 'Unknown Gender'}</p>
-                    <p><i class="fas fa-dollar-sign"></i> Price: ${pet.price ? `$${pet.price}` : 'No Price'}</p>
-                    <div class="flex gap-2 mt-4">
-                        <button class="btn btn-sm" onclick="likePet('${pet.image || 'assets/placeholder.png'}')">Like</button>
-                        <button class="btn btn-sm btn-warning" onclick="adoptPet(this, '${pet.pet_name || 'No Name'}')">Adopt</button>
-                        <button class="btn btn-sm btn-info" onclick="showPetDetails('${pet.id}')">Details</button>
-                    </div>
-                </div>
-            `;
-            petsContainer.appendChild(petCard);
-        });
+        const sortedPets = pets.sort((a, b) => b.price - a.price);
+        displayPets(sortedPets); // Reuse displayPets function to render sorted pets
     } catch (error) {
         console.error('Error fetching or sorting pets:', error);
         displayNoInfo();
@@ -239,7 +214,7 @@ function displayPets(pets) {
     const petsContainer = document.getElementById('pets');
     petsContainer.innerHTML = '';
     pets.forEach(pet => {
-        if (pet.petId) { // Ensure the pet has an ID and exclude bird data
+        if (pet.petId) { // Ensure the pet has an ID
             const petCard = document.createElement('div');
             petCard.classList = 'card card-compact p-4';
             petCard.innerHTML = `
@@ -265,6 +240,7 @@ function displayPets(pets) {
         }
     });
 }
+
 
 
 
@@ -309,7 +285,6 @@ function adoptPet(button, petName) {
         }
     }, 1000);
 }
-
 function showPetDetails(petId) {
     if (!petId) {
         console.error('Invalid pet ID');
@@ -329,39 +304,33 @@ function showPetDetails(petId) {
             console.log('API Response:', data); // Log the entire API response
             if (data.status && data.petData) {
                 const pet = data.petData;
-                const modalContent = `
-                    <div style="padding: 10px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <img src="${pet.image || 'https://via.placeholder.com/150'}" alt="${pet.pet_name || 'No Name'}" class="h-48 w-full object-cover rounded">
-                        <h2 class="text-xl font-bold">${pet.pet_name || 'No Name'}</h2>
-                        <p><i class="fas fa-paw"></i> Breed: ${pet.breed || 'Unknown Breed'}</p>
-                        <p><i class="fas fa-calendar-alt"></i> Birth: ${pet.date_of_birth || 'Not Available'}</p>
-                        <p><i class="fas fa-venus-mars"></i> Gender: ${pet.gender || 'Unknown Gender'}</p>
-                        <p><i class="fas fa-dollar-sign"></i> Price: ${pet.price ? `$${pet.price}` : 'No Price'}</p>
-                        <p><i class="fas fa-syringe"></i> Vaccinated: ${pet.vaccinated_status || 'Not Available'}</p>
-                        <p>${pet.pet_details || 'Description Not Available'}</p>
-                        <button class="btn btn-sm btn-danger" onclick="closeModal()" style="background-color: #ff6347; color: white; margin-top: auto;">Close</button>
-                    </div>
-                `;
-                const modal = document.getElementById('modal');
-                modal.innerHTML = modalContent;
-                modal.classList.remove('hidden');
+                document.getElementById('petImage').src = pet.image || 'https://via.placeholder.com/150';
+                document.getElementById('petName').innerText = pet.pet_name || 'No Name';
+                document.getElementById('petBreed').innerText = `Breed: ${pet.breed || 'Unknown Breed'}`;
+                document.getElementById('petGender').innerText = `Gender: ${pet.gender || 'Unknown Gender'}`;
+                document.getElementById('petDetails').innerText = pet.pet_details || 'Description Not Available';
+                document.getElementById('modal').classList.remove('hidden');
             } else {
                 console.error('Error fetching pet details:', data.message);
-                const modal = document.getElementById('modal');
-                modal.innerHTML = '<p>No details available for this pet.</p>';
-                modal.classList.remove('hidden');
+                document.getElementById('modal').innerHTML = '<p>No details available for this pet.</p>';
+                document.getElementById('modal').classList.remove('hidden');
             }
         })
         .catch(error => {
             console.error('Error fetching pet details:', error);
-            const modal = document.getElementById('modal');
-            modal.innerHTML = '<p>Error fetching pet details.</p>';
-            modal.classList.remove('hidden');
+            document.getElementById('modal').innerHTML = '<p>Error fetching pet details.</p>';
+            document.getElementById('modal').classList.remove('hidden');
         })
         .finally(() => {
             spinner.classList.add('hidden');
         });
 }
+
+
+document.getElementById('closeModal').addEventListener('click', () => {
+    document.getElementById('modal').classList.add('hidden');
+});
+
 
 
 function closeModal() {
