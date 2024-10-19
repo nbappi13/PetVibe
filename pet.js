@@ -261,15 +261,18 @@ function adoptPet(button, petName) {
         <div>
             <h2 class="text-2xl font-extrabold text-green-600 text-center">Congratulation! <br> Adopting process starts for your pet . . .</h2>
             <img src="https://img.icons8.com/?size=100&id=Kd3aGkmdbe4V&format=png&color=000000" alt="Adoption Icon" style="margin: 20px 0;">
-            <p id="adopting-text" class="text-red-700 mt-5 text-center">Adopting ${petName}</p>
             <p id="countdown" class="text-center" style="font-size: 1.2rem;">3</p>
+
+
+            <div class="lg:mt-16 md:mt-0"><p id="adopting-text" class="text-red-700 mt-5 text-center">Adopting ${petName}</p></div>
+            
             <button class="btn btn-sm btn-danger" onclick="closeModal()" style="background-color: #ff6347; color: white; margin-top: auto;">Close</button>
         </div>
     `;
     const modal = document.getElementById('modal');
     modal.innerHTML = modalContent;
     modal.classList.remove('hidden');
-    let countdown = 3;
+    let countdown = 2;
     const interval = setInterval(() => {
         const countdownElement = document.getElementById('countdown');
         countdownElement.textContent = countdown;

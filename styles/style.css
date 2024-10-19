@@ -40,9 +40,9 @@ body {
 
 /* Add styles for active category button */
 .category-btn.active {
-    background-color: #1abc9c;
+    background-color: #f04238;
     color: white;
-    border-color: #1abc9c;
+    border-color: #f04238;
 }
 
 /* Responsive adjustments */
@@ -94,6 +94,13 @@ body {
 .sort-button {
     text-align: right;
 }
+
+
+
+
+
+
+
 
 /* General styles for the modal */
 #modal {
