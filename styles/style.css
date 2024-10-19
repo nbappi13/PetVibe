@@ -30,6 +30,7 @@ body {
 
 .category-btn {
     margin: 0 8px;
+
 }
 
 .category-btn img {
@@ -72,6 +73,7 @@ body {
 
 @media (min-width: 1024px) {
     .category-btn {
+        font-size: x-large;
         padding-left: 95px;
         padding-right: 95px;
         font-size: larger;

@@ -49,11 +49,17 @@ function displayCategories(categories) {
             button.addEventListener('click', () => filterPets(categoryName.toLowerCase()));
             categoriesContainer.appendChild(button);
             console.log('Button added for category:', category.category);
+
+            // Apply padding for large devices
+            if (window.innerWidth >= 1024) {
+                button.style.padding = '0 70px'; // Top and bottom: 0, Left and right: 20px
+            }
         } else {
             console.log('Category not found for:', categoryName);
         }
     });
 }
+
 
 async function filterPets(category) {
     const spinner = document.getElementById('loadBar');
