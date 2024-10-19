@@ -45,11 +45,6 @@ body {
     border-color: #1abc9c;
 }
 
-
-
-
-
-
 /* Responsive adjustments */
 #categories {
     display: flex;
@@ -100,8 +95,6 @@ body {
     text-align: right;
 }
 
-/* General styles for the modal */
-/* General styles for the modal */
 /* General styles for the modal */
 #modal {
     display: flex;
@@ -166,34 +159,34 @@ body {
     }
 }
 
-
-
-
 /* Styling for pet cards */
-/* Default Card Styling */
-/* Default Card Styling */
 .card {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     background: white;
 }
+
 .card-body {
     padding: 16px;
 }
+
 .card-title {
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 8px;
 }
+
 .card p {
     display: flex;
     align-items: center;
     margin: 4px 0;
 }
+
 .card p i {
     margin-right: 8px;
 }
+
 /* Responsive adjustments for small devices */
 @media (max-width: 640px) {
     .card-body {
@@ -210,6 +203,7 @@ body {
         width: 100%; /* Make buttons full-width */
     }
 }
+
 /* Responsive adjustments for medium devices */
 @media (max-width: 768px) {
     .card .flex {
@@ -220,6 +214,7 @@ body {
         width: 100%; /* Make buttons full-width */
     }
 }
+
 /* Liked pets section */
 #liked-pets {
     display: grid;
@@ -233,62 +228,75 @@ body {
     width: 20%; /* Shrink the width */
     margin-right: 10px; /* Give space on the right part */
 }
+
 #liked-pets img {
     border: 2px solid #1abc9c;
     padding: 4px;
     border-radius: 8px;
 }
+
 /* Button styles */
 .btn {
     padding: 8px 16px;
     border-radius: 4px;
     text-transform: uppercase;
 }
+
 .btn:hover {
     opacity: 0.8;
 }
+
 .btn-warning {
     background-color: #ff9800;
     color: white;
 }
+
 .btn-info {
     background-color: #03a9f4;
     color: white;
 }
+
 .btn-sm {
     padding: 4px 8px;
     font-size: 0.875rem;
 }
+
 /* Responsiveness for pet cards */
 #pets {
     display: grid;
     gap: 16px;
 }
+
 @media (min-width: 640px) {
     #pets {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
 @media (min-width: 768px) {
     #pets {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
 @media (min-width: 1024px) {
     #pets {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
 @media (max-width: 640px) {
     #liked-pets {
         grid-template-columns: repeat(1, 1fr); /* Single column for small screens */
         width: 50%; /* Full width for small screens */
     }
 }
+
 /* Icons and spacing for pet details */
 .card p i {
     margin-right: 8px;
 }
+
 /* Styling for the modal */
 #modal {
     position: fixed;
@@ -303,9 +311,11 @@ body {
     z-index: 1000;
     padding: 20px;
 }
+
 #modal.hidden {
     display: none;
 }
+
 #modal button {
     margin-top: 20px;
 }
@@ -313,34 +323,34 @@ body {
 .loading-bars.loading-xs {
     width: 60px;
     height: 60px;
-  }
-  
-  .spinner {
+}
+
+.spinner {
     border: 12px solid #f3f3f3;
     border-top: 12px solid #3498db;
     border-radius: 50%;
     animation: spin 2s linear infinite;
-  }
-  
-  .spinner.hidden {
-    animation: none; 
-  }
-  
-  @keyframes spin {
+}
+
+.spinner.hidden {
+    animation: none;
+}
+
+@keyframes spin {
     0% { transform: rotate(0deg); }
-    100% { transform: rotate(0deg); }
-  }
-  
-  .hidden {
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
     display: none;
-  }
-  
-  #loadBar {
+}
+
+#loadBar {
     display: block;
     margin: 0 auto;
-    transition: opacity 0.5s ease-in-out; 
-  }
-  
-  #loadBar.hidden {
+    transition: opacity 0.5s ease-in-out;
+}
+
+#loadBar.hidden {
     opacity: 0;
-  }
+}
