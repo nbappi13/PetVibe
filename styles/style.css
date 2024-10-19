@@ -14,9 +14,6 @@ body {
     color: #ff6347;
 }
 
-.banner {
-    /* background-color: #f5f5f5; */
-}
 
 .btn-primary {
     background-color: #1abc9c;
@@ -39,14 +36,13 @@ body {
     height: 24px;
 }
 
-/* Add styles for active category button */
+
 .category-btn.active {
     background-color: #f04238;
     color: white;
     border-color: #f04238;
 }
 
-/* Responsive adjustments */
 #categories {
     display: flex;
     flex-wrap: wrap;
@@ -76,12 +72,10 @@ body {
         font-size: x-large;
         padding-left: 95px;
         padding-right: 95px;
-        font-size: larger;
         font-weight: bold;
     }
 }
 
-/* Flexbox for best deal text and sort button */
 .adopt-header {
     display: flex;
     justify-content: space-between;
@@ -99,12 +93,6 @@ body {
 
 
 
-
-
-
-
-
-/* General styles for the modal */
 #modal {
     display: flex;
     align-items: center;
@@ -126,7 +114,6 @@ body {
     overflow-y: auto;
 }
 
-/* Responsive styles */
 @media (max-width: 600px) {
     #modal > div {
         padding: 10px;
@@ -168,7 +155,6 @@ body {
     }
 }
 
-/* Styling for pet cards */
 .card {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -196,7 +182,6 @@ body {
     margin-right: 8px;
 }
 
-/* Responsive adjustments for small devices */
 @media (max-width: 640px) {
     .card-body {
         padding: 12px;
@@ -209,22 +194,20 @@ body {
         gap: 8px;
     }
     .card .btn {
-        width: 100%; /* Make buttons full-width */
+        width: 100%; 
     }
 }
 
-/* Responsive adjustments for medium devices */
 @media (max-width: 768px) {
     .card .flex {
         flex-direction: column;
         gap: 8px;
     }
     .card .btn {
-        width: 100%; /* Make buttons full-width */
+        width: 100%; 
     }
 }
 
-/* Liked pets section */
 #liked-pets {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -234,8 +217,8 @@ body {
     border-radius: 10px;
     max-height: 150vh;
     overflow-y: auto;
-    width: 20%; /* Shrink the width */
-    margin-right: 10px; /* Give space on the right part */
+    width: 20%; 
+    margin-right: 10px; 
 }
 
 #liked-pets img {
@@ -244,7 +227,6 @@ body {
     border-radius: 8px;
 }
 
-/* Button styles */
 .btn {
     padding: 8px 16px;
     border-radius: 4px;
@@ -270,7 +252,6 @@ body {
     font-size: 0.875rem;
 }
 
-/* Responsiveness for pet cards */
 #pets {
     display: grid;
     gap: 16px;
@@ -296,25 +277,23 @@ body {
 
 @media (max-width: 640px) {
     #liked-pets {
-        grid-template-columns: repeat(1, 1fr); /* Single column for small screens */
-        width: 50%; /* Full width for small screens */
+        grid-template-columns: repeat(1, 1fr);
+        width: 50%;
     }
 }
 
-/* Icons and spacing for pet details */
 .card p i {
     margin-right: 8px;
 }
 
-/* Styling for the modal */
-/* General styles for the modal */
+
 #modal {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
-    max-width: 800px; /* Allow more space for larger screens */
+    max-width: 800px;
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -330,20 +309,20 @@ body {
     margin-top: 20px;
 }
 
-/* Style the image and details section */
+
 #modal > div {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Adjust for larger screens */
+
 @media (min-width: 1024px) {
     #modal > div {
         flex-direction: row;
     }
     #modal img {
-        width: 50%; /* Image takes 50% of the modal width */
+        width: 50%;
         margin-right: 20px;
     }
     #modal .details {
@@ -355,13 +334,13 @@ body {
     }
 }
 
-/* Adjust for medium screens */
+
 @media (min-width: 768px) and (max-width: 1023px) {
     #modal img {
-        width: 50%; /* Ensure the image takes up half the modal */
-        max-width: 300px; /* Restrict max width */
+        width: 50%; 
+        max-width: 300px; 
         border-radius: 10px;
-        margin: 0 auto; /* Center the image */
+        margin: 0 auto; 
     }
     #modal .details {
         width: 100%;
@@ -371,15 +350,15 @@ body {
         font-size: 1.25rem;
     }
     #modal .details p {
-        font-size: 0.9rem; /* Smaller text size for medium screens */
+        font-size: 0.9rem; 
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap; /* Ensure text does not wrap */
-        width: 100%; /* Adjust width */
+        white-space: nowrap; 
+        width: 100%; 
     }
 }
 
-/* Ensure responsiveness for smaller screens */
+
 @media (max-width: 767px) {
     #modal {
         width: 95%;
@@ -387,7 +366,7 @@ body {
     }
     #modal img {
         width: 100%;
-        max-width: 250px; /* Smaller image for small screens */
+        max-width: 250px; 
         border-radius: 10px;
     }
     #modal .details {
@@ -398,11 +377,11 @@ body {
         font-size: 1.1rem;
     }
     #modal .details p {
-        font-size: 0.8rem; /* Smaller text size for small screens */
+        font-size: 0.8rem; 
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap; /* Ensure text does not wrap */
-        width: 100%; /* Adjust width */
+        white-space: nowrap; 
+        width: 100%; 
     }
 }
 
@@ -444,3 +423,43 @@ body {
 #loadBar.hidden {
     opacity: 0;
 }
+
+
+.container {
+    padding: 10px;
+}
+
+@media (max-width: 639px) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+

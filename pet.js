@@ -50,9 +50,8 @@ function displayCategories(categories) {
             categoriesContainer.appendChild(button);
             console.log('Button added for category:', category.category);
 
-            // Apply padding for large devices
             if (window.innerWidth >= 1024) {
-                button.style.padding = '0 70px'; // Top and bottom: 0, Left and right: 20px
+                button.style.padding = '0 70px'; 
             }
         } else {
             console.log('Category not found for:', categoryName);
@@ -68,7 +67,6 @@ async function filterPets(category) {
         spinner.classList.add('hidden');
     }, 2000);
 
-    // Add active class to clicked button and remove from others
     const categoryButtons = document.querySelectorAll('.category-btn');
     categoryButtons.forEach(button => button.classList.remove('active'));
     const activeButton = Array.from(categoryButtons).find(button => button.textContent.trim().toLowerCase() === category);
@@ -176,7 +174,7 @@ async function sortPetsByPrice() {
             pets = data.pets;
         }
         const sortedPets = pets.sort((a, b) => b.price - a.price);
-        displayPets(sortedPets); // Reuse displayPets function to render sorted pets
+        displayPets(sortedPets);
     } catch (error) {
         console.error('Error fetching or sorting pets:', error);
         displayNoInfo();
@@ -220,7 +218,7 @@ function displayPets(pets) {
     const petsContainer = document.getElementById('pets');
     petsContainer.innerHTML = '';
     pets.forEach(pet => {
-        if (pet.petId) { // Ensure the pet has an ID
+        if (pet.petId) { 
             const petCard = document.createElement('div');
             petCard.classList = 'card card-compact p-4';
             petCard.innerHTML = `
@@ -246,11 +244,6 @@ function displayPets(pets) {
         }
     });
 }
-
-
-
-
-
 
 
 
@@ -299,7 +292,7 @@ function showPetDetails(petId) {
         console.error('Invalid pet ID');
         return;
     }
-    console.log('Pet ID:', petId); // Log the petId to ensure it's correct
+    console.log('Pet ID:', petId); 
 
     const spinner = document.getElementById('loadBar');
     spinner.classList.remove('hidden');
@@ -310,7 +303,7 @@ function showPetDetails(petId) {
     fetch(`https://openapi.programming-hero.com/api/peddy/pet/${petId}`)
         .then(res => res.json())
         .then(data => {
-            console.log('API Response:', data); // Log the entire API response
+            console.log('API Response:', data);
             if (data.status && data.petData) {
                 const pet = data.petData;
                 document.getElementById('petImage').src = pet.image || 'https://via.placeholder.com/150';
@@ -339,7 +332,6 @@ function showPetDetails(petId) {
 document.getElementById('closeModal').addEventListener('click', () => {
     document.getElementById('modal').classList.add('hidden');
 });
-
 
 
 function closeModal() {
