@@ -1,72 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 body {
     font-family: "Lato", sans-serif;
 }
-
 .nav-link {
     text-decoration: none;
     font-weight: bold;
     color: #000;
 }
-
 .nav-link:hover {
     color: #ff6347;
 }
-
-
 .btn-primary {
     background-color: #1abc9c;
     color: white;
     border: none;
 }
-
 .btn-primary:hover {
     background-color: #89a016;
 }
-
 .category-btn {
     margin: 0 8px;
-
 }
-
 .category-btn img {
     margin-right: 8px;
     width: 24px;
     height: 24px;
 }
-
-
 .category-btn.active {
     background-color: #f04238;
     color: white;
     border-color: #f04238;
 }
-
 #categories {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
+
 @media (max-width: 1024px) {
     #categories {
         gap: 12px;
     }
 }
-
 @media (max-width: 768px) {
     #categories {
         gap: 10px;
     }
 }
-
 @media (max-width: 640px) {
     #categories {
         gap: 8px;
     }
 }
-
 @media (min-width: 1024px) {
     .category-btn {
         font-size: x-large;
@@ -75,31 +62,24 @@ body {
         font-weight: bold;
     }
 }
-
 .adopt-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .adopt-subtitle {
     display: inline-block;
     text-align: left;
 }
-
 .sort-button {
     text-align: right;
 }
-
-
-
 #modal {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 10px;
 }
-
 #modal > div {
     background: white;
     padding: 15px;
@@ -113,7 +93,6 @@ body {
     text-align: center;
     overflow-y: auto;
 }
-
 @media (max-width: 600px) {
     #modal > div {
         padding: 10px;
@@ -135,7 +114,6 @@ body {
         width: 100%;
     }
 }
-
 @media (min-width: 1200px) {
     #modal > div {
         padding: 20px;
@@ -154,7 +132,6 @@ body {
         font-size: 1rem;
     }
 }
-
 .card {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -194,7 +171,7 @@ body {
         gap: 8px;
     }
     .card .btn {
-        width: 100%; 
+        width: 100%;
     }
 }
 
@@ -204,7 +181,7 @@ body {
         gap: 8px;
     }
     .card .btn {
-        width: 100%; 
+        width: 100%;
     }
 }
 
@@ -217,8 +194,8 @@ body {
     border-radius: 10px;
     max-height: 150vh;
     overflow-y: auto;
-    width: 20%; 
-    margin-right: 10px; 
+    width: 20%;
+    margin-right: 10px;
 }
 
 #liked-pets img {
@@ -286,8 +263,7 @@ body {
     margin-right: 8px;
 }
 
-
-#modal {
+#modal, #modal-details, #modal-adopt {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -301,31 +277,29 @@ body {
     padding: 20px;
 }
 
-#modal.hidden {
+#modal.hidden, #modal-details.hidden, #modal-adopt.hidden {
     display: none;
 }
 
-#modal button {
+#modal button, #modal-details button, #modal-adopt button {
     margin-top: 20px;
 }
 
-
-#modal > div {
+#modal > div, #modal-details > div, #modal-adopt > div {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-
 @media (min-width: 1024px) {
-    #modal > div {
+    #modal > div, #modal-details > div, #modal-adopt > div {
         flex-direction: row;
     }
-    #modal img {
+    #modal img, #modal-details img, #modal-adopt img {
         width: 50%;
         margin-right: 20px;
     }
-    #modal .details {
+    #modal .details, #modal-details .details, #modal-adopt .details {
         flex: 1;
         padding: 20px;
         display: flex;
@@ -333,133 +307,3 @@ body {
         gap: 10px;
     }
 }
-
-
-@media (min-width: 768px) and (max-width: 1023px) {
-    #modal img {
-        width: 50%; 
-        max-width: 300px; 
-        border-radius: 10px;
-        margin: 0 auto; 
-    }
-    #modal .details {
-        width: 100%;
-        padding: 10px;
-    }
-    #modal .details h2 {
-        font-size: 1.25rem;
-    }
-    #modal .details p {
-        font-size: 0.9rem; 
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap; 
-        width: 100%; 
-    }
-}
-
-
-@media (max-width: 767px) {
-    #modal {
-        width: 95%;
-        max-width: 90%;
-    }
-    #modal img {
-        width: 100%;
-        max-width: 250px; 
-        border-radius: 10px;
-    }
-    #modal .details {
-        width: 100%;
-        padding: 10px;
-    }
-    #modal .details h2 {
-        font-size: 1.1rem;
-    }
-    #modal .details p {
-        font-size: 0.8rem; 
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap; 
-        width: 100%; 
-    }
-}
-
-#modal .details button {
-    margin-top: 20px;
-}
-
-.loading-bars.loading-xs {
-    width: 60px;
-    height: 60px;
-}
-
-.spinner {
-    border: 12px solid #f3f3f3;
-    border-top: 12px solid #3498db;
-    border-radius: 50%;
-    animation: spin 2s linear infinite;
-}
-
-.spinner.hidden {
-    animation: none;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.hidden {
-    display: none;
-}
-
-#loadBar {
-    display: block;
-    margin: 0 auto;
-    transition: opacity 0.5s ease-in-out;
-}
-
-#loadBar.hidden {
-    opacity: 0;
-}
-
-
-.container {
-    padding: 10px;
-}
-
-@media (max-width: 639px) {
-    .container {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-}
-
-@media (min-width: 640px) and (max-width: 767px) {
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 20px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 20px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-}
-

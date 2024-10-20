@@ -182,7 +182,6 @@ async function sortPetsByPrice() {
 }
 
 
-
 document.addEventListener("DOMContentLoaded", () => {
     const spinner = document.getElementById('loadBar');
     spinner.classList.remove('hidden');
@@ -218,7 +217,7 @@ function displayPets(pets) {
     const petsContainer = document.getElementById('pets');
     petsContainer.innerHTML = '';
     pets.forEach(pet => {
-        if (pet.petId) { 
+        if (pet.petId) {
             const petCard = document.createElement('div');
             petCard.classList = 'card card-compact p-4';
             petCard.innerHTML = `
@@ -245,8 +244,6 @@ function displayPets(pets) {
     });
 }
 
-
-
 function likePet(thumbnail) {
     const likedPetsContainer = document.getElementById('liked-pets');
     const petThumbnail = document.createElement('img');
@@ -258,48 +255,49 @@ function likePet(thumbnail) {
 function adoptPet(button, petName) {
     const modalContent = `
         <div>
-            <h2 class="text-2xl font-extrabold text-green-600 text-center">Congratulation! <br> Adopting process starts for your pet . . .</h2>
+            <h2 class="text-2xl font-extrabold text-green-600 text-center">Congratulations! <br> Adoption process starts for your pet . . .</h2>
             <img src="https://img.icons8.com/?size=100&id=Kd3aGkmdbe4V&format=png&color=000000" alt="Adoption Icon" style="margin: 20px 0;">
-            <p id="countdown" class="text-center" style="font-size: 1.2rem;">3</p>
-
-
+            <p id="countdown" class="text-center" style="font-size: 4rem;">3</p>
             <div class="lg:mt-16 md:mt-0"><p id="adopting-text" class="text-red-700 mt-5 text-center">Adopting ${petName}</p></div>
-            
-            <button class="btn btn-sm btn-danger" onclick="closeModal()" style="background-color: #ff6347; color: white; margin-top: auto;">Close</button>
+            <button class="btn btn-sm btn-danger" onclick="closeAdoptModal()" style="background-color: #ff6347; color: white; margin-top: auto;">Close</button>
         </div>
     `;
-    const modal = document.getElementById('modal');
-    modal.innerHTML = modalContent;
-    modal.classList.remove('hidden');
-    let countdown = 2;
+    const modalAdopt = document.getElementById('modal-adopt');
+    modalAdopt.innerHTML = modalContent;
+    modalAdopt.classList.remove('hidden');
+    let countdown = 3;
     const interval = setInterval(() => {
         const countdownElement = document.getElementById('countdown');
         countdownElement.textContent = countdown;
-        countdownElement.style.fontSize = '1.2rem';
+        countdownElement.style.fontSize = '4rem'; 
         countdown--;
         if (countdown < 0) {
             clearInterval(interval);
-            countdownElement.textContent = `Now You Adopted ${petName}!`;
-            countdownElement.style.color = 'orange';
-            countdownElement.style.fontWeight = 'bold';
-            document.getElementById('adopting-text').style.display = 'none';
+            countdownElement.classList.add('hidden');
+            document.getElementById('adopting-text').innerHTML = `Now You Adopted ${petName}!`;
+            document.getElementById('adopting-text').style.color = 'orange';
+            document.getElementById('adopting-text').style.fontWeight = 'bold';
             button.disabled = true;
         }
     }, 1000);
 }
+
+function closeAdoptModal() {
+    const modalAdopt = document.getElementById('modal-adopt');
+    modalAdopt.classList.add('hidden');
+}
+
 function showPetDetails(petId) {
     if (!petId) {
         console.error('Invalid pet ID');
         return;
     }
-    console.log('Pet ID:', petId); 
-
+    console.log('Pet ID:', petId);
     const spinner = document.getElementById('loadBar');
     spinner.classList.remove('hidden');
     setTimeout(() => {
         spinner.classList.add('hidden');
     }, 2000);
-
     fetch(`https://openapi.programming-hero.com/api/peddy/pet/${petId}`)
         .then(res => res.json())
         .then(data => {
@@ -311,27 +309,27 @@ function showPetDetails(petId) {
                 document.getElementById('petBreed').innerText = `Breed: ${pet.breed || 'Unknown Breed'}`;
                 document.getElementById('petGender').innerText = `Gender: ${pet.gender || 'Unknown Gender'}`;
                 document.getElementById('petDetails').innerText = pet.pet_details || 'Description Not Available';
-                document.getElementById('modal').classList.remove('hidden');
+                document.getElementById('modal-details').classList.remove('hidden'); 
             } else {
                 console.error('Error fetching pet details:', data.message);
-                document.getElementById('modal').innerHTML = '<p>No details available for this pet.</p>';
-                document.getElementById('modal').classList.remove('hidden');
+                document.getElementById('modal-details').innerHTML = '<p>Error fetching pet details.</p>';
+                document.getElementById('modal-details').classList.remove('hidden'); 
             }
         })
         .catch(error => {
             console.error('Error fetching pet details:', error);
-            document.getElementById('modal').innerHTML = '<p>Error fetching pet details.</p>';
-            document.getElementById('modal').classList.remove('hidden');
+            document.getElementById('modal-details').innerHTML = '<p>Error fetching pet details.</p>';
+            document.getElementById('modal-details').classList.remove('hidden'); 
         })
         .finally(() => {
             spinner.classList.add('hidden');
         });
 }
 
-
 document.getElementById('closeModal').addEventListener('click', () => {
-    document.getElementById('modal').classList.add('hidden');
+    document.getElementById('modal-details').classList.add('hidden'); 
 });
+
 
 
 function closeModal() {
